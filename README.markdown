@@ -12,10 +12,10 @@ techniques.
 
 Integration with existing services is quite easy.  Services simply POST json into a
 topic URL and a GET on the same URL will return that json data with a few pieces of metadata.
-**Note: the server will respond with a 404 error if you post to an inactive topic.
+**Note: if you use the MAILBOX type of topic (set in the tac file) the server will respond with a 404 error if you post to an inactive topic.
 A topic is only active while someone is watching it (with a long-poll).
 Once the user goes away the topic remains active for a configurable amount of time
-before becoming inactive.
+before becoming inactive.  If you use the NORMAIL type of topic the topic exists as long as there is something watching it (with a long-poll) or data is being POST'ed to it
 
 For example point your browser to http://localhost:8000/topics/test -- The
 browser will hang indefinitely waiting for a results.  Now run the following:
