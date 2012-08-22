@@ -49,7 +49,10 @@ class Topic(resource.Resource):
         self.last_id += 1
         if self.last_id > self.max_id:
             self.last_id = 1
-        for r in self.requests:
+
+        #this is probably OK since len(self.requests) is going to only hold the list of subscribers for this particular topic
+        staticRequests = self.requests[:] #make a copy of the requests list since it's going to be modified in the following loop
+        for r in staticRequests:
             self.__deliver(r)
         return self.__mk_res(request, 'ok', 'application/json')
 
